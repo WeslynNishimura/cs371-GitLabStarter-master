@@ -39,6 +39,9 @@
             android:singleLine="true"
             android:text="put text here"
             android:textSize="@dimen/edittext_font_size" />
+            android:text="@string/initial_text"
+            android:textSize="@dimen/edittext_font_size"
+            tools:text="JOHN HAS 2 DOGS" />
 
         <Space
             android:layout_width="0sp"
