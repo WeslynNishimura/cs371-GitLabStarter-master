@@ -132,7 +132,7 @@ public class TextModActivity extends ActionBarActivity {
         });
 
         // initialize the "COPY NAME" button
-        copyName = (Button)findViewById(R.id.copy_name);
+        copyName = (Button)findViewById(R.id.button2);
         edit = (EditText)findViewById(R.id.editText);
         copyName.setOnClickListener(new View.OnClickListener() {
             @Override
