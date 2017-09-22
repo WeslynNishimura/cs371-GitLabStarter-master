@@ -10,6 +10,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.text.Editable;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -19,7 +20,9 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import java.util.ArrayList;
-
+import android.widget.Button;
+import android.text.InputFilter;
+import android.widget.EditText;
 public class TextModActivity extends ActionBarActivity {
 
     // array-list that contains our images to display
@@ -27,6 +30,10 @@ public class TextModActivity extends ActionBarActivity {
 
     // instance variables containing widgets
     private ImageView imageView; // the view that shows the image
+
+    Button upper;
+    EditText edit;
+
 
     /**
      * @see android.app.Activity#onCreate(android.os.Bundle)
@@ -37,6 +44,21 @@ public class TextModActivity extends ActionBarActivity {
         // perform superclass initialization; load the layout
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_text_mod);
+
+        upper = (Button)findViewById(R.id.button6);
+        edit = (EditText)findViewById(R.id.editText);
+
+        upper.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String t = "" +edit.getText();
+                edit.setText(t.toUpperCase());
+
+
+            }
+                });
+
+
 
         // set instance variables for our widgets
         imageView = (ImageView)findViewById(R.id.imageView);
