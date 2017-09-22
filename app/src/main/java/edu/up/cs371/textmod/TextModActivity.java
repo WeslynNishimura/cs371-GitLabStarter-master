@@ -5,11 +5,13 @@ package edu.up.cs371.textmod;
  *
  * Allow text to be modified in simple ways with button-presses.
  */
+import android.content.SharedPreferences;
 import android.content.res.TypedArray;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.text.Editable;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -21,19 +23,30 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import java.util.ArrayList;
+import android.widget.Button;
+import android.text.InputFilter;
+import android.widget.EditText;
+
+import static edu.up.cs371.textmod.R.id.imageView;
 
 public class TextModActivity extends ActionBarActivity {
 
     // array-list that contains our images to display
     private ArrayList<Bitmap> images;
 
-
     // instance variables containing widgets
     private ImageView imageView; // the view that shows the image
+
+    // instance variables
+    private Button copyName; // The "COPY NAME" button
+    private Button reverseButton;
     private Button buttonClear;
     private Button buttonLowerCase;
     private EditText edit;
-    private Button upper;
+    Button upper;
+
+
+
     /**
      * @see android.app.Activity#onCreate(android.os.Bundle)
      */
@@ -45,23 +58,12 @@ public class TextModActivity extends ActionBarActivity {
         setContentView(R.layout.activity_text_mod);
         //set up the editText
         edit = (EditText)findViewById(R.id.editText);
-        upper = (Button)findViewById(R.id.button6);
         // set up the clear button
         buttonClear = (Button)findViewById(R.id.button);
         buttonClear.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 edit.setText("");
-            }
-        });
-
-        upper.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String t = "" +edit.getText();
-                edit.setText(t.toUpperCase());
-//hi
-
             }
         });
 
@@ -75,15 +77,24 @@ public class TextModActivity extends ActionBarActivity {
             }
         });
 
+        upper = (Button)findViewById(R.id.button6);
+        upper.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String s = "" + edit.getText();
+                edit.setText(s.toUpperCase());
+            }
+        });
+
         // set instance variables for our widgets
         imageView = (ImageView)findViewById(R.id.imageView);
 
         // Set up the spinner so that it shows the names in the spinner array resources
         //
         // get spinner object
-        Spinner spinner = (Spinner)findViewById(R.id.spinner);
+        final Spinner spinner = (Spinner)findViewById(R.id.spinner);
         // get array of strings
-        String[] spinnerNames = getResources().getStringArray(R.array.spinner_names);
+        final String[] spinnerNames = getResources().getStringArray(R.array.spinner_names);
         // create adapter with the strings
         ArrayAdapter adapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_list_item_1, android.R.id.text1, spinnerNames);
@@ -109,9 +120,51 @@ public class TextModActivity extends ActionBarActivity {
 
         // define a listener for the spinner
         spinner.setOnItemSelectedListener(new MySpinnerListener());
+        //set reverse button
+        reverseButton = (Button) findViewById(R.id.button4);
+        reverseButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String text = "" + edit.getText();
+                //edit.setText("pretend it reversed");
+                edit.setText(reverse(text));
+            }
+        });
 
+        // initialize the "COPY NAME" button
+        copyName = (Button)findViewById(R.id.copy_name);
+        edit = (EditText)findViewById(R.id.editText);
+        copyName.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // get the selected spinner item
+                String text = spinner.getSelectedItem().toString();
+                int spinnerItem = spinner.getSelectedItemPosition();
+
+                // get entered text
+                String new1 = edit.getText() + text;
+
+                // set the text to the editText
+                edit.setText(new1);
+            }
+        });
     }
 
+
+    public static String reverse(String text) {
+        char[] input = text.toCharArray();
+        int start = 0;
+        int end = input.length - 1;
+        char temp;
+        while (end > start) {
+            temp = input[start];
+            input[start] = input[end];
+            input[end] = temp;
+            end--;
+            start++;
+        }
+        return new String(input);
+    }
     /**
      * @see android.app.Activity#onCreateOptionsMenu(android.view.Menu)
      */

@@ -37,6 +37,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:singleLine="true"
+            android:text="put text here"
+            android:textSize="@dimen/edittext_font_size" />
             android:text="@string/initial_text"
             android:textSize="@dimen/edittext_font_size"
             tools:text="JOHN HAS 2 DOGS" />
@@ -120,13 +122,13 @@
             android:layout_weight="1" />
 
         <Button
+            android:id="@+id/copy_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="@color/button_color"
             android:text="@string/copy_name_button_text"
-            android:id="@+id/button2"
-            android:textSize="@dimen/button_font_size"
             android:textColor="@color/button_text_color"
-            android:background="@color/button_color" />
+            android:textSize="@dimen/button_font_size" />
 
         <Space
             android:layout_width="0sp"
