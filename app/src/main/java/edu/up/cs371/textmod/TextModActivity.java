@@ -28,6 +28,7 @@ public class TextModActivity extends ActionBarActivity {
     // array-list that contains our images to display
     private ArrayList<Bitmap> images;
 
+
     // instance variables containing widgets
     private ImageView imageView; // the view that shows the image
 
@@ -35,6 +36,8 @@ public class TextModActivity extends ActionBarActivity {
     private Button copyName; // The "COPY NAME" button
     private EditText edit; // The text
 
+    private Button buttonClear;
+    private Button buttonLowerCase;
     /**
      * @see android.app.Activity#onCreate(android.os.Bundle)
      */
@@ -44,6 +47,26 @@ public class TextModActivity extends ActionBarActivity {
         // perform superclass initialization; load the layout
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_text_mod);
+        //set up the editText
+        edit = (EditText)findViewById(R.id.editText);
+        // set up the clear button
+        buttonClear = (Button)findViewById(R.id.button);
+        buttonClear.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                edit.setText("");
+            }
+        });
+
+        // set up the lower case button
+        buttonLowerCase = (Button)findViewById(R.id.button7);
+        buttonLowerCase.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String s = "" + edit.getText();
+                edit.setText(s.toLowerCase());
+            }
+        });
 
         // set instance variables for our widgets
         imageView = (ImageView)findViewById(R.id.imageView);
