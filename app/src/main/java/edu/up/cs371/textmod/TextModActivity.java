@@ -5,6 +5,7 @@ package edu.up.cs371.textmod;
  *
  * Allow text to be modified in simple ways with button-presses.
  */
+import android.content.SharedPreferences;
 import android.content.res.TypedArray;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -30,17 +31,18 @@ public class TextModActivity extends ActionBarActivity {
     // array-list that contains our images to display
     private ArrayList<Bitmap> images;
 
-
     // instance variables containing widgets
     private ImageView imageView; // the view that shows the image
-    private Button buttonClear;
-    private Button buttonLowerCase;
+
+    // instance variables
+    private Button copyName; // The "COPY NAME" button
     private EditText edit;
 
     private Button reverseButton;
     private EditText edit;
     Button upper;
     EditText edit;
+
 
 
     /**
@@ -79,9 +81,9 @@ public class TextModActivity extends ActionBarActivity {
         // Set up the spinner so that it shows the names in the spinner array resources
         //
         // get spinner object
-        Spinner spinner = (Spinner)findViewById(R.id.spinner);
+        final Spinner spinner = (Spinner)findViewById(R.id.spinner);
         // get array of strings
-        String[] spinnerNames = getResources().getStringArray(R.array.spinner_names);
+        final String[] spinnerNames = getResources().getStringArray(R.array.spinner_names);
         // create adapter with the strings
         ArrayAdapter adapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_list_item_1, android.R.id.text1, spinnerNames);
@@ -118,6 +120,25 @@ public class TextModActivity extends ActionBarActivity {
                 edit.setText(reverse(text));
             }
         });
+
+        // initialize the "COPY NAME" button
+        copyName = (Button)findViewById(R.id.copy_name);
+        edit = (EditText)findViewById(R.id.editText);
+        copyName.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // get the selected spinner item
+                String text = spinner.getSelectedItem().toString();
+                int spinnerItem = spinner.getSelectedItemPosition();
+
+                // get entered text
+                String new1 = edit.getText() + text;
+
+                // set the text to the editText
+                edit.setText(new1);
+            }
+        });
+    }
 
     }
     public static String reverse(String text) {
