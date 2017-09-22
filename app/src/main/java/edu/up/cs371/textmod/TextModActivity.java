@@ -30,8 +30,12 @@ public class TextModActivity extends ActionBarActivity {
     // array-list that contains our images to display
     private ArrayList<Bitmap> images;
 
+
     // instance variables containing widgets
     private ImageView imageView; // the view that shows the image
+    private Button buttonClear;
+    private Button buttonLowerCase;
+    private EditText edit;
 
     private Button reverseButton;
     private EditText edit;
@@ -48,21 +52,26 @@ public class TextModActivity extends ActionBarActivity {
         // perform superclass initialization; load the layout
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_text_mod);
-
-        upper = (Button)findViewById(R.id.button6);
+        //set up the editText
         edit = (EditText)findViewById(R.id.editText);
-
-        upper.setOnClickListener(new View.OnClickListener() {
+        // set up the clear button
+        buttonClear = (Button)findViewById(R.id.button);
+        buttonClear.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String t = "" +edit.getText();
-                edit.setText(t.toUpperCase());
-
-
+                edit.setText("");
             }
-                });
+        });
 
-
+        // set up the lower case button
+        buttonLowerCase = (Button)findViewById(R.id.button7);
+        buttonLowerCase.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String s = "" + edit.getText();
+                edit.setText(s.toLowerCase());
+            }
+        });
 
         // set instance variables for our widgets
         imageView = (ImageView)findViewById(R.id.imageView);
