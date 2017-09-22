@@ -62,7 +62,7 @@ public class TextModActivity extends ActionBarActivity {
                 edit.setText(s.toLowerCase());
             }
         });
-//
+
         // set instance variables for our widgets
         imageView = (ImageView)findViewById(R.id.imageView);
 
