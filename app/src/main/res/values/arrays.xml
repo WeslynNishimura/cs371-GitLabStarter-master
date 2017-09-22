@@ -10,6 +10,9 @@
         <item>@mipmap/nuxoll</item>
         <item>@mipmap/vegdahl</item>
         <item>@mipmap/wes</item>
+        <item>@mipmap/ic_launcher</item>
+        <item>@mipmap/cat</item>
+        <item>@mipmap/female</item>
     </array>
 
     <string-array name="spinner_names">
@@ -17,6 +20,9 @@
         <item>Dr. Andrew Nuxoll</item>
         <item>Dr. Steven Vegdahl</item>
         <item>Weslyn Nishimura</item>
+        <item>Rhianna Pinkerton</item>
+        <item>Chelle Plaisted</item>
+        <item>Alexa Ruiz</item>
     </string-array>
 
 </resources>
