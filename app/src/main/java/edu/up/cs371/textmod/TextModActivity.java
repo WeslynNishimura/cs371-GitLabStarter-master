@@ -16,6 +16,8 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import java.util.ArrayList;
@@ -25,9 +27,11 @@ public class TextModActivity extends ActionBarActivity {
     // array-list that contains our images to display
     private ArrayList<Bitmap> images;
 
+
     // instance variables containing widgets
     private ImageView imageView; // the view that shows the image
-
+    private Button buttonClear;
+    private EditText edit;
     /**
      * @see android.app.Activity#onCreate(android.os.Bundle)
      */
@@ -37,6 +41,16 @@ public class TextModActivity extends ActionBarActivity {
         // perform superclass initialization; load the layout
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_text_mod);
+        //set up the editText
+        edit = (EditText)findViewById(R.id.editText);
+        // set up the clear button
+        buttonClear = (Button)findViewById(R.id.button);
+        buttonClear.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                edit.setText("");
+            }
+        });
 
         // set instance variables for our widgets
         imageView = (ImageView)findViewById(R.id.imageView);
