@@ -31,6 +31,7 @@ public class TextModActivity extends ActionBarActivity {
     // instance variables containing widgets
     private ImageView imageView; // the view that shows the image
     private Button buttonClear;
+    private Button buttonLowerCase;
     private EditText edit;
     /**
      * @see android.app.Activity#onCreate(android.os.Bundle)
@@ -49,6 +50,16 @@ public class TextModActivity extends ActionBarActivity {
             @Override
             public void onClick(View view) {
                 edit.setText("");
+            }
+        });
+
+        // set up the lower case button
+        buttonLowerCase = (Button)findViewById(R.id.button7);
+        buttonLowerCase.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String s = "" + edit.getText();
+                edit.setText(s.toLowerCase());
             }
         });
 
