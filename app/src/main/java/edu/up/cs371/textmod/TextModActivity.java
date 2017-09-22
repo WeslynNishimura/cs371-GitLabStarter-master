@@ -26,6 +26,9 @@ import java.util.ArrayList;
 import android.widget.Button;
 import android.text.InputFilter;
 import android.widget.EditText;
+
+import static edu.up.cs371.textmod.R.id.imageView;
+
 public class TextModActivity extends ActionBarActivity {
 
     // array-list that contains our images to display
@@ -36,12 +39,11 @@ public class TextModActivity extends ActionBarActivity {
 
     // instance variables
     private Button copyName; // The "COPY NAME" button
-    private EditText edit;
-
     private Button reverseButton;
+    private Button buttonClear;
+    private Button buttonLowerCase;
     private EditText edit;
-    private Button upper;
-    private EditText edit;
+    Button upper;
 
 
 
@@ -72,6 +74,15 @@ public class TextModActivity extends ActionBarActivity {
             public void onClick(View view) {
                 String s = "" + edit.getText();
                 edit.setText(s.toLowerCase());
+            }
+        });
+
+        upper = (Button)findViewById(R.id.button6);
+        upper.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String s = "" + edit.getText();
+                edit.setText(s.toUpperCase());
             }
         });
 
@@ -111,7 +122,6 @@ public class TextModActivity extends ActionBarActivity {
         spinner.setOnItemSelectedListener(new MySpinnerListener());
         //set reverse button
         reverseButton = (Button) findViewById(R.id.button4);
-        edit = (EditText) findViewById(R.id.editText);
         reverseButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -140,7 +150,7 @@ public class TextModActivity extends ActionBarActivity {
         });
     }
 
-    }
+
     public static String reverse(String text) {
         char[] input = text.toCharArray();
         int start = 0;
