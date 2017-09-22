@@ -26,6 +26,7 @@ import java.util.ArrayList;
 import android.widget.Button;
 import android.text.InputFilter;
 import android.widget.EditText;
+import java.util.Random;
 
 import static edu.up.cs371.textmod.R.id.imageView;
 
@@ -44,6 +45,7 @@ public class TextModActivity extends ActionBarActivity {
     private Button buttonLowerCase;
     private EditText edit;
     Button upper;
+    Button random;
 
 
 
@@ -59,6 +61,22 @@ public class TextModActivity extends ActionBarActivity {
         //set up the editText
         edit = (EditText)findViewById(R.id.editText);
         // set up the clear button
+        random = (Button)findViewById(R.id.button3);
+        random.setOnClickListener(new View.OnClickListener() {
+        @Override
+            public void onClick(View view){
+            String x = "" + edit.getText();
+            char[] letter = x.toCharArray();
+            int y = (int)(Math.random()*letter.length);
+            letter[y] = (char) (Math.random()*255);
+            edit.setText(""+letter);
+
+
+        }
+
+        });
+
+
         buttonClear = (Button)findViewById(R.id.button);
         buttonClear.setOnClickListener(new View.OnClickListener() {
             @Override
