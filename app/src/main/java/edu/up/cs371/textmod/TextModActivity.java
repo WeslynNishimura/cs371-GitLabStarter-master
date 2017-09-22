@@ -12,6 +12,7 @@ import android.graphics.BitmapFactory;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.method.CharacterPickerDialog;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -42,6 +43,7 @@ public class TextModActivity extends ActionBarActivity {
     private Button reverseButton;
     private Button buttonClear;
     private Button buttonLowerCase;
+    private Button alternateButton;
     private EditText edit;
     Button upper;
 
@@ -146,6 +148,29 @@ public class TextModActivity extends ActionBarActivity {
 
                 // set the text to the editText
                 edit.setText(new1);
+            }
+        });
+
+        // set functions for alternating text
+        alternateButton = (Button)findViewById(R.id.button3);
+        alternateButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // get the text
+                String alter = edit.getText().toString();
+                char[] input = alter.toCharArray();
+
+                // alternate the case of the text
+                for (int i = 0; i < alter.length(); i++) {
+                    char c = input[i];
+
+                    if (i%2 == 0) input[i] = Character.toLowerCase(c);
+                    else input[i] = Character.toUpperCase(c);
+                }
+
+                // set the text to the editText
+                String new2 = new String(input);
+                edit.setText(new2);
             }
         });
     }
