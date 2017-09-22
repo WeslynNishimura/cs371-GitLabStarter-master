@@ -43,6 +43,7 @@ public class TextModActivity extends ActionBarActivity {
     private Button buttonClear;
     private Button buttonLowerCase;
     private EditText edit;
+    private Button removeSpace;
     Button upper;
 
 
@@ -146,9 +147,20 @@ public class TextModActivity extends ActionBarActivity {
 
                 // set the text to the editText
                 edit.setText(new1);
+
             }
         });
-    }
+
+        //remove space
+        removeSpace = (Button) findViewById(R.id.button5);
+        removeSpace.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String text = "" + edit.getText();
+                //edit.setText("pretend it reversed");
+                edit.setText(text.replaceAll("\\s+",""));
+            }
+        });    }
 
 
     public static String reverse(String text) {
