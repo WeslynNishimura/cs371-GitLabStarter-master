@@ -10,12 +10,15 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.text.Editable;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import java.util.ArrayList;
@@ -28,6 +31,8 @@ public class TextModActivity extends ActionBarActivity {
     // instance variables containing widgets
     private ImageView imageView; // the view that shows the image
 
+    private Button reverseButton;
+    private EditText edit;
     /**
      * @see android.app.Activity#onCreate(android.os.Bundle)
      */
@@ -72,9 +77,33 @@ public class TextModActivity extends ActionBarActivity {
 
         // define a listener for the spinner
         spinner.setOnItemSelectedListener(new MySpinnerListener());
+        //set reverse button
+        reverseButton = (Button) findViewById(R.id.button4);
+        edit = (EditText) findViewById(R.id.editText);
+        reverseButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String text = "" + edit.getText();
+                //edit.setText("pretend it reversed");
+                edit.setText(reverse(text));
+            }
+        });
 
     }
-
+    public static String reverse(String text) {
+        char[] input = text.toCharArray();
+        int start = 0;
+        int end = input.length - 1;
+        char temp;
+        while (end > start) {
+            temp = input[start];
+            input[start] = input[end];
+            input[end] = temp;
+            end--;
+            start++;
+        }
+        return new String(input);
+    }
     /**
      * @see android.app.Activity#onCreateOptionsMenu(android.view.Menu)
      */
