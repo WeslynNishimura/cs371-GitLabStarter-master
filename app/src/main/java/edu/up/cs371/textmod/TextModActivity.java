@@ -43,6 +43,7 @@ public class TextModActivity extends ActionBarActivity {
     private Button buttonClear;
     private Button buttonLowerCase;
     private EditText edit;
+    private Button punctuation;
     Button upper;
 
 
@@ -66,7 +67,23 @@ public class TextModActivity extends ActionBarActivity {
                 edit.setText("");
             }
         });
-
+        // punctuation button
+        punctuation = (Button)findViewById(R.id.punctutationButton);
+        punctuation.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String s = "" + edit.getText();
+                char[] input = s.toCharArray();
+                String correct = "";
+                int end = input.length - 1;
+                for (int i = 0; i < input.length; i++ ) {
+                    if(Character.isLetterOrDigit(input[i]) || Character.isWhitespace(input[i])) {
+                        correct += input[i];
+                    }
+                }
+                edit.setText(correct);
+            }
+        });
         // set up the lower case button
         buttonLowerCase = (Button)findViewById(R.id.button7);
         buttonLowerCase.setOnClickListener(new View.OnClickListener() {
