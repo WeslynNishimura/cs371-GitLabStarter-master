@@ -40,8 +40,8 @@ public class TextModActivity extends ActionBarActivity {
 
     private Button reverseButton;
     private EditText edit;
-    Button upper;
-    EditText edit;
+    private Button upper;
+    private EditText edit;
 
 
 
