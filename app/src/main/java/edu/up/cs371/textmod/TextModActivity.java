@@ -33,6 +33,7 @@ public class TextModActivity extends ActionBarActivity {
 
     // instance variables
     private Button copyName; // The "COPY NAME" button
+    private EditText edit;
 
     /**
      * @see android.app.Activity#onCreate(android.os.Bundle)
