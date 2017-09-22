@@ -53,7 +53,7 @@ public class TextModActivity extends ActionBarActivity {
             public void onClick(View view) {
                 String t = "" +edit.getText();
                 edit.setText(t.toUpperCase());
-
+//hi
 
             }
                 });
